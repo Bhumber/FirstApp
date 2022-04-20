@@ -1,0 +1,58 @@
+ 1 шаг - Объект props
+
+props - это объект, который передается как параметр при вызове функции.
+props передается всегда, даже есои он пустой.
+
+ Пример:
+Const Post = (props) => {
+	...
+}
+
+ Если у propsов есть свойства, можно к ним обращаться:
+Const Post = (prosp) => {
+	<div>
+		<span>{props.свойство}</span>
+	</div>
+}
+
+ Пример:
+ У нас есть JSX-файл MyPosts, к которому подключен JSX-файл Post.
+ 
+ В MyPosts:
+	const MyPosts = () => {
+		return (
+			<div className={classes.content}>
+				<div>My posts 
+					<div>New post</div>
+					<div className={classes.posts}>
+					    <Post message='Hi, how are you ?' like='10'/>
+					    <Post message='Its my first post' like='15'/>
+					</div>
+				</div>
+			</div>
+		);
+	}
+
+	- Здесть, при вызове функии Post (<Post /> выглядит как тег), задаются атрибуты message и like.
+		Эти атрибуты являются свойствами объекта props.
+		
+		
+ В Post:
+	const Post = (props) => {
+		return (
+			<div className={classes.item}>
+				<div className={classes.item}>{props.message}</div>
+				<div>{props.like}</div>
+			</div>
+		);
+	}
+	
+	- Как видно выше, для того чтобы передать на страницу браузера информацию о мообщении и о колличестве лайков,
+		Мы обратились к свойствам объекта props:
+			{props.message} - сообщение.
+			{props.like} - кол-во лайков.
+			
+Пока что, чтобы запостить что-нибудь нужно писать это что-то в значении атрибута message,
+а кол во лайков нужно обновлять вручную.
+Но со временем это все будет делаться проще.
+ 

@@ -15,3 +15,7 @@
   .nav .item:hover {
     background-color: rgb(184, 210, 232);
   }
+
+  .nav .item:hover a {
+    color: rgb(3, 27, 48);
+  }
