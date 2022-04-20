@@ -1,7 +1,6 @@
 .content {
     grid-area: c;
-    background-color: rgb(82, 171, 215);
-    border-radius: 5px;
+    background-color: transparent;
   } 
   
   .content img {
