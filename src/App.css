@@ -24,7 +24,7 @@ body {
 }
 
 /* ====/ Шапка /==== */
-.header {
+/* .header {
   border-radius: 35px 5px 5px 35px;
   grid-area: h;
   background-color: rgb(82, 171, 215);
@@ -40,14 +40,14 @@ body {
 
   font-size: 30px;
   color: rgb(20, 130, 93);
-}
+} */
 
 
 /* ====/ Меню Навигации /==== */
-.nav {
+/* .nav {
   height: 250px;
   grid-area: n;
-  /* background-color: rgb(82, 171, 215); */
+  background-color: rgb(82, 171, 215); 
 }
 
 .nav div {
@@ -60,11 +60,11 @@ body {
 
 .nav div:hover {
   background-color: rgb(184, 210, 232);
-}
+} */
 
 
 /* ====/ Контейнер контента /==== */
-.content {
+/* .content {
   grid-area: c;
   background-color: rgb(82, 171, 215);
   border-radius: 5px;
@@ -73,4 +73,4 @@ body {
 .content img {
   width: 100%;
   height: 300px;
-}
+} */

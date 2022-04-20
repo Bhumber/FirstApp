@@ -1,0 +1,17 @@
+.nav {
+    height: 250px;
+    grid-area: n;
+    /* background-color: rgb(82, 171, 215); */
+  }
+  
+  .nav .item {
+    height: 30px;
+    padding-left: 20px;
+    background-color: rgb(82, 171, 215);
+    margin: 5px 0; 
+    border-radius: 5px;
+  }
+  
+  .nav .item:hover {
+    background-color: rgb(184, 210, 232);
+  }
