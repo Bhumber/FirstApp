@@ -1,0 +1,38 @@
+ Синтаксис для версии react-router-dom 6
+
+ import {BrowserRouter, Routes, Route} from "react-router-dom";
+
+ <BrowserRouter>
+        <div className='app-booker'>
+              <Header />
+              <NavBar />
+         <div class='app-booker-content'>
+             <Routes>
+                 <Route path="/dialog" element= {<Dialogs/>}/>
+                 <Route path="/profile" element={<Profile/>}/>
+             </Routes>
+         </div>
+        </div>
+     </BrowserRouter>
+	 
+	 
+ Суть такая:
+ Нажимаешь на кнопку профиль => на страницце будет отображаться профиль.
+ Нажимаешь на сообщения => отображаться сообщения.
+ 
+ Чтобы это работало, нужно установить покет react-router-dom.
+	Для этого нужно прописать в терминале "npm install react-router-dom" и можно дописать "-save" (эта команда внесет этот покет в pacage.json Благодаря этому, людям работающим с тобой в команде не придется копаться в интернете для того чтобы скачивать этот покет. Им достаточно бутет вбить "npm install"  в терминале и все скачается само.)
+	
+ И так, скачав этот покет, нужно его подключить к основному JS-файлу:
+	import {BrowserRouter, Routes, Route} from "react-router-dom";
+		
+		- Здесь подключаются компоненты BrowserRouter, Routes и Route.
+			*BrowserRouter - в этот компонент будет родительским для всей разметки.
+			*Routes - в этот компонент помещается вес навбар. 
+			*Route - это компонент для отделных элементов навбара. 
+				Он содержит:
+					- path - атрибут или свойство объекта Route. Его значение - это путь URL. Аналогичный путь указан в Nav.jsx
+						<a href="/profile">Profile</a> 
+						/profile - это что то вроде нити, которая соединяет кнопку и какой то механизм.
+ 					- element - это атрибут, содержащий компоненту в {}.
+			

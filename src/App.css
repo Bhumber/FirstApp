@@ -2,10 +2,10 @@ body {
   background-color: rgb(246, 246, 234);
 }
 /* ====/ Обнуление /==== */
- a {
-   text-decoration: none;
-   color: white;
- }
+a {
+  text-decoration: none;
+  color: white;
+}
 
 /* ====/ Главный контейнер /==== */
 .app-wrapper {
@@ -13,14 +13,19 @@ body {
   margin: 0 auto;
   display: grid;
 
-
-  grid-template-areas: 
+  grid-template-areas:
     "h h"
     "n c";
 
   grid-template-rows: 70px 1fr;
   grid-template-columns: 2fr 10fr;
-   grid-gap: 20px; 
+  grid-gap: 20px;
+}
+
+/* ====/ Main container /==== */
+.app-wrapper-content {
+  grid-area: c;
+  background-color: transparent;
 }
 
 /* ====/ Шапка /==== */
@@ -42,7 +47,6 @@ body {
   color: rgb(20, 130, 93);
 } */
 
-
 /* ====/ Меню Навигации /==== */
 /* .nav {
   height: 250px;
@@ -61,7 +65,6 @@ body {
 .nav div:hover {
   background-color: rgb(184, 210, 232);
 } */
-
 
 /* ====/ Контейнер контента /==== */
 /* .content {

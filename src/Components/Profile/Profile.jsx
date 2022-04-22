@@ -5,8 +5,8 @@ import InfoAbout from './InfoAbout/InfoAbout';
 
 const Profile = () => {
     return (
-        <div className={classes.content}>
-          <div>
+        <div>
+          <div className={classes.content}>
             <img src='https://www.ubackground.com/_ph/17/709425269.jpg' />
           </div>
           <InfoAbout />
