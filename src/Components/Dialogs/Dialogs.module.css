@@ -1,0 +1,36 @@
+/* ================/ Users column /=================== */
+
+
+.dialogs {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+}
+
+.dialogs .dialogsItem {
+    margin-right: 30px;
+    border-right: 2px solid black;
+}
+
+.dialogs .dialogsItem .dialog {
+    padding: 10px;
+    
+}
+
+.dialog a {
+    color: black;
+}
+
+.active {
+    color: lightcoral;
+}
+
+/* ================/ Messages column /=================== */
+
+.dialogs .messages {
+
+}
+
+.dialogs .messages .message {
+    padding: 10px;
+    
+}

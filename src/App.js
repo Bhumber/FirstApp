@@ -1,4 +1,3 @@
-
 import './App.css';
 import Header from './Components/Header/Header';
 import Nav from './Components/Nav/Nav';
@@ -19,7 +18,7 @@ const App = () => {
           <div className="app-wrapper-content">
             <Routes>
               <Route path='/profile' element={<Profile />} />
-              <Route path='/dialogs' element={<Dialogs />} />
+              <Route path='/dialogs/*' element={<Dialogs />} />
               <Route path='/news' element={<News />} />
               <Route path='/music' element={<Music />} />
               <Route path='/settings' element={<Settings />} />
@@ -29,5 +28,7 @@ const App = () => {
       </BrowserRouter>   
   );
 }
+
+
 
 export default App;

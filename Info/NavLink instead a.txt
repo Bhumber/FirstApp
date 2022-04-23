@@ -1,0 +1,81 @@
+ При использовании тега <a> с атрибутом href, При нажатии на  кнопки в навбаре страница будет полностью перезагружаться.
+ Это занимает много ресурса браузера.
+
+
+ const Nav = () => {
+    return (
+        <nav className={classes.nav}>
+          <div className={classes.item}><a href="/profile">Profile</NavLink></div>
+          <div className={classes.item}><a href="/dialogs">Message</NavLink></div>
+          <div className={classes.item}><a href="/news">News</NavLink></div>
+          <div className={classes.item}><a href="/music">Music</NavLink></div>
+          <div className={classes.item}><a href="/settings">Settings</NavLink></div>
+        </nav>
+    );
+ }
+
+
+
+
+ Если заменить тег <a> на тег <NavLink>, а атрибут href на атрибут to, то браузер будет подгружать отдельный элемент страницы.
+	Например при нажатии на кнопку Messages в навбвре, подгрузится только окно с сообщениями.
+
+ const Nav = () => {
+    return (
+        <nav className={classes.nav}>
+          <div className={classes.item}><NavLink to="/profile">Profile</NavLink></div>
+          <div className={classes.item}><NavLink to="/dialogs">Message</NavLink></div>
+          <div className={classes.item}><NavLink to="/news">News</NavLink></div>
+          <div className={classes.item}><NavLink to="/music">Music</NavLink></div>
+          <div className={classes.item}><NavLink to="/settings">Settings</NavLink></div>
+        </nav>
+    );
+ }
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+--------------------------------------------------------------------
+	Работа над окном сообщений.
+	
+	JSX-код файла Dialigs.jsx:
+	
+		<div className={classes.dialogs}>
+            <div className={classes.dialogsItem}>
+                <div className={classes.dialog + ' ' + classes.active}><NavLink to="/dialogs/1">Sasha</NavLink></div>
+                <div className={classes.dialog}><NavLink to="/dialogs/2">Vitya</NavLink></div>
+                <div className={classes.dialog}><NavLink to="/dialogs/3">Katya</NavLink></div>
+                <div className={classes.dialog}><NavLink to="/dialogs/4">Sveta</NavLink></div>
+                <div className={classes.dialog}><NavLink to="/dialogs/5">Oleg</NavLink></div>
+            </div>
+
+            <div className={classes.messages}>
+                <div className={classes.message}>Hi</div>
+                <div className={classes.message}>Hello</div>
+                <div className={classes.message}>Privet</div>
+                <div className={classes.message}>How are you ?</div>
+                <div className={classes.message}>Kak dela ?</div>
+            </div>
+        </div>
+		
+ Мы имеем 2 блока:
+	- Блок с именами собеседников. 
+	- Блок с сообщениями.
+
+ Имена собеседников мы обернули в NavLink и задали им путь to='/dialogs/№'.
+ С начала мы кликаем на кнопку Messages в навбаре. Нам откроется окно сообщений.
+ Мы будем кликать на имена собеседников и браузер будет открывать нам окно собеседника с нашей с ним перепиской.
+ 
+ Чтобы это работало нужно внести изменения в App.js-файл:
+ 
+ <Route path='/dialogs/*' element={<Dialogs />} />
+ 
+ - Нужно добавить /* в атрибут path.
+ 
+ 
+ 
+	

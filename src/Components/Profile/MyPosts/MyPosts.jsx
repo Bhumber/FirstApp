@@ -6,7 +6,12 @@ const MyPosts = () => {
     return (
         <div className={classes.content}>
           <div>My posts 
-            <div>New post</div>
+            <div>
+              <textarea></textarea>
+            </div>
+            <div>
+              <button>Add post</button>
+            </div>
             <div className={classes.posts}>
               <Post message='Hi, how are you ?' like='10'/>
               <Post message='Its my first post' like='15'/>
