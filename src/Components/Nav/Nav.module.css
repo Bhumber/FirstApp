@@ -9,6 +9,7 @@
     line-height: 40px;
     background-color: rgb(82, 171, 215);
     margin: 0 0 5px 0; 
+    box-shadow: 2px 2px 2px 0;
   }
   
   .nav .item a div {

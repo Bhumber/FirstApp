@@ -1,6 +1,7 @@
 .header {
     grid-area: h;
     background-color: rgb(82, 171, 215);
+    box-shadow: 2px 2px 2px 0;
   }
   
   

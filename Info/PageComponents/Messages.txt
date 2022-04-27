@@ -1,0 +1,96 @@
+ В файле Dialogs.jsx была разметка:
+
+ <div className={classes.dialogs}>
+	<div className={classes.dialogsItem}>
+		<div className={classes.dialog}>
+			<NavLink to="/dialogs/1" >Sasha</NavLink>
+		</div>
+		<div className={classes.dialog}>
+			<NavLink to="/dialogs/2" >Vitya</NavLink>
+		</div>
+		<div className={classes.dialog}>
+			<NavLink to="/dialogs/3" >Katya</NavLink>
+		</div>
+		<div className={classes.dialog}>
+			<NavLink to="/dialogs/4" >Sveta</NavLink>
+		</div>
+		<div className={classes.dialog}>
+			<NavLink to="/dialogs/5" >Oleg</NavLink>
+		</div>
+	</div>
+	<div className={classes.messages}>
+		<div className={classes.message}>Hi</div>
+		<div className={classes.message}>Hello</div>
+		<div className={classes.message}>Privet</div>
+		<div className={classes.message}>How are you ?</div>
+		<div className={classes.message}>Kak dela ?</div>
+	</div>
+ </div>
+ 
+ Здесь мы наблюдаем дублирование кода, это плохочитаемо и некрасиво.
+ 
+ Чтобы Оптимизировать код, мы вынесем дублирующий код в Компонеты.
+ Компонента - это код принимающий promis, как аргумент, и возвращающий разметку JSX.
+ 
+ Из этого:
+	<div className={classes.dialog}>
+		<NavLink to="/dialogs/1" >Sasha</NavLink>
+	</div>	
+	
+ Мы сделали это:
+	const DialogItem = (props) => {
+		let path = "/dialogs/" + props.id;
+
+		return (
+			<div className={classes.dialog}>
+				<NavLink to={path} >{props.name}</NavLink>
+			</div>
+		);
+	}
+	
+	- path - это переменная, содержащая конкатинированную строку и обращение к свойству id объекта props (props.id), которую функия получает как аргумент. 
+	Этот аргумент - это значение атрибута id компоненты DialogItem.
+	
+	- В тег <NavLink> заключено обращение к свойству name объекта props (props.name).
+	
+	Вот вызов этой функии:
+		<DialogItem name="Sasha" id="1" />
+	
+	
+ И то же самое мы проделали с <div className={classes.message}>Hi</div>:
+ 
+	const Mess = (props) => {
+		return (
+			<div className={classes.message}>{props.sms}</div>
+		);
+	}
+	
+	<Mess sms="Hi" />
+
+
+
+ Вот итог этой работы:
+ 
+ const Dialogs = (props) => {
+    return (
+        <div className={classes.dialogs}>
+            <div className={classes.dialogsItem}>
+                <DialogItem name="Sasha" id="1" />
+                <DialogItem name="Vitya" id="2" />
+                <DialogItem name="Katya" id="3" />
+                <DialogItem name="Sveta" id="4" />
+                <DialogItem name="Oleg" id="5" />
+            </div>
+
+            <div className={classes.messages}>
+                <Mess sms="Hi" />
+                <Mess sms="Hello" />
+                <Mess sms="Privet" />
+                <Mess sms="How are you ?" />
+                <Mess sms="Kak dela ?" />
+            </div>
+        </div>
+    );
+ }
+	
+	

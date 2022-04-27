@@ -1,41 +1,55 @@
 import React from "react";
 import classes from "./Dialogs.module.css"
 import { NavLink } from 'react-router-dom';
+import DialogItem from "./DialogItem/DialogItem";
+import Message from "./Message/Message";
 
 
-const DialogItem = (props) => {
-    let path = "/dialogs/" + props.id;
+// const DialogItem = (props) => {
+//     let path = "/dialogs/" + props.id;
 
-    return (
-        <div className={classes.dialog}>
-            <NavLink to={path} >{props.name}</NavLink>
-        </div>
-    );
-}
+//     return (
+//         <div className={classes.dialog}>
+//             <NavLink to={path} >{props.name}</NavLink>
+//         </div>
+//     );
+// }
 
-const Mess = (props) => {
-    return (
-        <div className={classes.message}>{props.sms}</div>
-    );
-}
+// const Mess = (props) => {
+//     return (
+//         <div className={classes.message}>{props.sms}</div>
+//     );
+// }
 
 const Dialogs = (props) => {
+    let dialogsData = [
+        {id: '1', name: 'Sasha'},
+        {id: '2', name: 'Vitya'},
+        {id: '3', name: 'Katya'},
+        {id: '4', name: 'Sveta'},
+        {id: '5', name: 'Oleg'},
+    ];
+
+    let dialogElements = dialogsData.map(d => <DialogItem name={d.name} id={d.id} /> );
+
+    let messData = [
+        {id: '1', sms: "Hi"},
+        {id: '2', sms: "Hello"},
+        {id: '3', sms: "Privet"},
+        {id: '4', sms: "How are you ?"},
+        {id: '5', sms: "Kak dela ?"},
+    ];
+
+    let messElements = messData.map(m => <Message sms={m.sms} />,)
+
     return (
         <div className={classes.dialogs}>
             <div className={classes.dialogsItem}>
-                <DialogItem name="Sasha" id="1" />
-                <DialogItem name="Vitya" id="2" />
-                <DialogItem name="Katya" id="3" />
-                <DialogItem name="Sveta" id="4" />
-                <DialogItem name="Oleg" id="5" />
+                {dialogElements} 
             </div>
 
             <div className={classes.messages}>
-                <Mess sms="Hi" />
-                <Mess sms="Hello" />
-                <Mess sms="Privet" />
-                <Mess sms="How are you ?" />
-                <Mess sms="Kak dela ?" />
+                {messElements}
             </div>
         </div>
     );

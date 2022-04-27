@@ -3,21 +3,29 @@ import classes from './MyPosts.module.css';
 import Post from './Post/Post';
 
 const MyPosts = () => {
-    return (
-        <div className={classes.content}>
-          <div>My posts 
-            <div>
-              <textarea></textarea>
+  let postData = [
+    {id: '1', message: 'Hi, how are you ?', like: '10'},
+    {id: '2', message: 'Its my first post', like: '15'},
+  ];
+
+  let post = postData.map(p => <Post message={p.message} like={p.like}/>)
+
+  return (
+      <div className={classes.content}>
+        <div>My posts 
+          <div className={classes.sendPost}>
+            <div className={classes.textArea}>
+              <textarea placeholder="Your news..." wrap="off" ></textarea>
             </div>
-            <div>
-              <button>Add post</button>
-            </div>
-            <div className={classes.posts}>
-              <Post message='Hi, how are you ?' like='10'/>
-              <Post message='Its my first post' like='15'/>
+            <div className={classes.sendButton}>
+              <button>Add</button>
             </div>
           </div>
+          <div className={classes.posts}>
+            { post }
+          </div>
         </div>
-    );
+      </div>
+  );
 }
 export default MyPosts;

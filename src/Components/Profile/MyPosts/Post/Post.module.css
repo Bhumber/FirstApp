@@ -1,3 +1,10 @@
+.block {
+    padding: 20px;
+    border-bottom: 1px solid gray;
+    color: rgb(138, 186, 234);
+}
+
 .item {
     color: lightcoral;
 }
+
