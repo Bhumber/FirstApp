@@ -3,10 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import dialogsData from './Data/DialogsData/DialogsData';
+import messData from './Data/MessagesData/MessagesData';
+import postData from './Data/PostsData/PostsData';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App posts={postData} dialogs={dialogsData} messages={messData} />
   </React.StrictMode>,
   document.getElementById('root')
 );

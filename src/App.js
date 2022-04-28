@@ -7,9 +7,11 @@ import News from './Components/News/News';
 import Music from './Components/Music/Music';
 import Settings from './Components/Settings/Settings';
 import {BrowserRouter, Routes, Route} from "react-router-dom";
+// import dialogsData from './Data/DialogsData/DialogsData';
+// import messData from './Data/MessagesData/MessagesData';
+// import postData from './Data/PostsData/PostsData';
 
-
-const App = () => {
+const App = (props) => {
   return (
       <BrowserRouter>
         <div className='app-wrapper'>
@@ -17,8 +19,8 @@ const App = () => {
           <Nav />
           <div className="app-wrapper-content">
             <Routes>
-              <Route path='/profile' element={<Profile />} />
-              <Route path='/dialogs/*' element={<Dialogs />} />
+              <Route path='/profile' element={<Profile posts={props.posts} />} />
+              <Route path='/dialogs/*' element={<Dialogs dialogs={props.dialogs} messages={props.messages} />} />
               <Route path='/news' element={<News />} />
               <Route path='/music' element={<Music />} />
               <Route path='/settings' element={<Settings />} />
