@@ -24,3 +24,9 @@
   .nav .item:hover a {
     color: rgb(3, 27, 48);
   }
+
+  .icon {
+    width: 20px;
+    height: 20px;
+  }
+

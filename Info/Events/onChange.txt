@@ -1,0 +1,41 @@
+ onChange - это событие, которое срабатывает при введении текста в <textarea>
+ Этому событию можно назначить функцию, котороа будет запускаться при возникновении этого события.
+
+
+Файл MyPosts.jsx:
+	Я создал функцию onPostChange и отдал ее <textarea>.
+	
+	let onPostChange = () => {
+		let text = newPostElement.current.value;
+		props.updateNewPostText(text);
+	};
+	
+ - Эта функция берет текст написанный в <textarea> и отдает ее функции updateNewPostText, которя пришла в этот файл через porops.
+
+ <textarea ref={newPostElement} onChange={onPostChange} value={props.newPostText}/>
+  
+ - Я приказал <textarea> запускать функцию onPostChange при введении в нее текста --> onChange={onPostChange}.
+ - value={props.newPostText} - эта запись гласит, что в полее ввода <textarea> будет показан текст, который будет хранится в newPostText.
+	Это значение придет в MyPosts.jsx из State.js, через props.
+	
+
+
+Файл State.js:
+	updateNewPostText - это функия, которая принимает параметр newText и присваивает ее (1)свойству newPostText подмассива profilePage массива state. И затем перерисовывает страницу без перезагрузки.
+	
+	export let updateNewPostText = (newText) => {
+		state.profilePage.newPostText = newText;
+		rerenderEntireTree(state);
+	}
+ 
+ Эта функция экспротируется из State.js и ипортируется в render.js и предается в MyPosts.jsx через props.
+ 
+
+(1) let state = {
+		dialogsPage: {
+			messText: []
+		},
+	}
+
+
+	

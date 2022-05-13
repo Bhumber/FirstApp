@@ -1,4 +1,25 @@
- .message {
-    padding: 10px;
-    
+.messageContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.message {
+    padding: 22px;
+    align-self: start;
+    display: flex;
+    align-items: baseline;
+}
+
+.myMess {
+    align-self: end;
+    display: flex;
+    align-items: baseline;
+}
+
+.point {
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    background-color: black;
+    margin: 0 10px;
 }

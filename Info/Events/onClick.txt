@@ -1,0 +1,128 @@
+ Имеется окно для ввода текста <textarea> и Кнопка отправить <button>.
+ 
+ Нужно сделать так чтобы текстом, введенным в окно, появился в приложении как пост.
+ 
+	Код:
+-----------------------------------------------------------------	
+	MyPosts.jsx
+
+const MyPosts = (props) => {	 
+(1)	let newMessageElement = React.createRef();
+
+(3) let sendMessage = () => {
+(4)     let text = newMessageElement.current.value;
+(5)		props.addPost(text);
+(6)		newMessageElement.current.value = '';
+    }
+	
+	<div>
+(2)		<textarea ref={newMessageElement}></textarea>
+(7)		<button onClick={sendMessage}>Send Message</button>
+	</div>
+}
+
+-----------------------------------------------------------------	
+	state.js
+
+(8)	let addPost = (text) => {
+(9)   	let newPost = {
+			id: '5',
+			message: text,
+			like: '4'
+		};
+		
+(10)	state.profilePage.postData.push(newPost);
+	}
+	
+(11)let state = {
+		profilePage: {
+			postData: [...]
+		}
+	}	
+    
+-----------------------------------------------------------------	
+ Разъяснение:
+ 
+(1) Cоздаем ссылку.
+		let newMessageElement = React.createRef();
+
+(2)	Назначаем эту ссылку <textarea>.	
+		<textarea ref={newMessageElement}></textarea>
+		Теперь обращение к newMessageElement, будет означать что мы обращаемся к <textarea>.
+	
+(3) Создаем функию sendMessage. 
+
+	В теле этой функции:
+(4) Объявляем переменную text значение которой будет текст введенный в <textarea>.
+		let text = newMessageElement.current.value;
+	
+(5) Далее берем text и отдем ее функии addPost(7) как параметр.
+		addPost(text);
+		
+(6) После этого очищаем от текста поле ввода <textarea>.
+		newMessageElement.current.value = '';
+		
+(7)	Отдаем <button> функию sendMessage.
+		<button onClick={sendMessage}>Send Message</button>
+
+(8) Объявляем функию addPost. Она будет принимать параметр text.		
+		let addPost = (text) => {}
+		
+(9)	C  начала addPost создаст объект newPost, в котором будет 3 свойства: id, message и like. Значением message будет, параметр данной функии, text.
+		let newPost = {
+			id: '5',
+			message: text,
+			like: '4'
+		};
+		
+(10)Далее массив newPost добависться в объект (11)state подобъект profilePage массив postData.
+		state.profilePage.postData.push(newPost);
+
+	
+	
+
+ Сделав вышеописанное, ничего не сработает, тк страница у нас уже отрисовалась и внесенные изменеия в state не отобразяться. Чтобы это исправить нужно добавить функию переотрисовывание стрницы при клике на <button>.
+ Для этого оборачиваем в функию весь код из index.js и называем ее rerenderEntireTree.
+ Если код нужно выполнить несколько раз, то его нужно обернуть в функию.
+-----------------------------------------------------------------
+		index.js
+			
+		let rerenderEntireTree = (props) => {
+		  ReactDOM.render(
+			<React.StrictMode>
+			  <App state={props} addPost={addPost} />
+			</React.StrictMode>,
+			document.getElementById('root')
+		  );
+		}
+-----------------------------------------------------------------			
+ Этот код отвечает за отрисовывание всей страницы. 
+-----------------------------------------------------------------
+		index.js
+		
+		ReactDOM.render(
+			<React.StrictMode>
+			  <App state={props} addPost={addPost} />
+			</React.StrictMode>,
+			document.getElementById('root')
+		  );
+-----------------------------------------------------------------			  
+ Поместив ее в функццию, мы получили возможность вызывать ее когда нам это понадобиться. Например для обновления страницы при нажатии на кнопку <button>.
+-----------------------------------------------------------------	
+		state.js
+
+		let addPost = (postMessage) => {
+			let newPost = {
+				id: '5',
+				message: postMessage,
+				like: '4'
+			};
+
+			state.profilePage.postData.push(newPost);
+
+			rerenderEntireTree(state);
+		}
+-----------------------------------------------------------------	
+
+ Далее читайте в FLUX.png
+ 

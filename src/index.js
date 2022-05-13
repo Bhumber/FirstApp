@@ -1,18 +1,27 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
+import React from 'react';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
-import dialogsData from './Data/DialogsData/DialogsData';
-import messData from './Data/MessagesData/MessagesData';
-import postData from './Data/PostsData/PostsData';
+import store from './redux/State';
+import App from './App';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App posts={postData} dialogs={dialogsData} messages={messData} />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+
+let rerenderEntireTree = () => {
+  ReactDOM.render(
+    <React.StrictMode>
+      <App state={store.getState()} 
+            addPost={store.addPost.bind(store)} 
+            updateNewPostText={store.updateNewPostText.bind(store)} 
+            updateMessText={store.updateMessText.bind(store)} 
+            addMessage={store.addMessage.bind(store)} />
+    </React.StrictMode>,
+    document.getElementById('root')
+  );
+}
+
+store.subscribe(rerenderEntireTree);
+
+rerenderEntireTree(store.getState());
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
