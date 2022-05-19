@@ -1,3 +1,8 @@
+import dialogsReducer from "./dialogsReducer";
+import profileReducer from "./profileReducer";
+import friendsReducer from './friendsReducer';
+
+
 let store = {
     _state: {
         dialogsPage: {
@@ -30,7 +35,7 @@ let store = {
                         {id: '2', message: 'Its my first post', like: '15'}
             ],
     
-            newPostText: []
+            newPostText: ''
         },
     
         friendsPage: {
@@ -43,52 +48,23 @@ let store = {
             ]
         }
     },
-    
+    _callSubscriber() {},
+
     getState() {
         return this._state;
     },
-
-    //Posts
-    addPost() {
-        let newPost = {
-            id: '5',
-            message: this._state.profilePage.newPostText,
-            like: '4'
-        };
-    
-        this._state.profilePage.postData.push(newPost);
-    
-        this._callSubscriber(this._state);
-    },
-    
-    updateNewPostText(newText) {
-        this._state.profilePage.newPostText = newText;
-        this._callSubscriber(this._state);
-    },
-    
-    //Messages
-    addMessage() {
-        let newMess = {
-            id: '3',
-            sms: this._state.dialogsPage.messText,
-        }
-    
-        this._state.dialogsPage.messData.push(newMess);
-        this._callSubscriber(this._state);
-    },
-    
-    updateMessText(newMess) {
-        this._state.dialogsPage.messText = newMess;
-        this._callSubscriber(this._state);
-    },
-    
-    //Callback
-    _callSubscriber() {},
-    
     subscribe(observer) {
         this._callSubscriber = observer;
+    },
+
+    dispatch(action) {
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+        this._state.friendsPage = friendsReducer(this._state.friendsPage, action);
+        this._callSubscriber();
     }
-}
+}    
+
 
 export default store;
 

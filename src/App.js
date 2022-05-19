@@ -17,9 +17,10 @@ const App = (props) => {
           <Nav />
           <div className="app-wrapper-content">
             <Routes>
-              <Route path='/profile' element={<Profile profilePage={props.state.profilePage} addPost={props.addPost} updateNewPostText={props.updateNewPostText}/>} />
+              <Route path='/profile' element={<Profile profilePage={props.state.profilePage}
+                                                       dispatch={props.dispatch} />} />
               <Route path='/friends' element={<Friends state={props.state.friendsPage}/>} />
-              <Route path='/dialogs/*' element={<Dialogs state={props.state.dialogsPage} updateMessText={props.updateMessText} addMessage={props.addMessage} />} />
+              <Route path='/dialogs/*' element={<Dialogs state={props.state.dialogsPage} dispatch={props.dispatch} />} />
               <Route path='/news' element={<News />} />
               <Route path='/music' element={<Music />} />
               <Route path='/settings' element={<Settings />} />

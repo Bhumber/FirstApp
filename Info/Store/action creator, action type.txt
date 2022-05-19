@@ -1,0 +1,110 @@
+ ActionCreator.
+ 
+ Это функция, возвращающая объект action. У каждого такого объекта должно быть свойство type. Это свойство нужно для того чтобы определить какое из условий (после if else) в disptch выполняется. 
+ Эта функцция хранится в State.js.
+ 
+ Пример:
+ 
+ State.js
+ 
+ Функции actionCreator:
+	let addPostActionCreator = () => ({type: 'ADD-POST'});
+	let onPostChangeActionCreator = (text) => ({type: 'UPDATE-NEW-POST-TEXT', newText: text});
+	
+ 
+ Функция dispatch. Она принимает объект action, содердит условия и код, который выполнится при выполнении условия.
+	dispatch(action) {
+        if  (action.type === 'ADD-POST') {
+            let newPost = {
+                id: '5',
+                message: this._state.profilePage.newPostText,
+                like: '4'
+            };
+            this._state.profilePage.postData.push(newPost);
+            this._callSubscriber(this._state);
+            
+        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+            this._state.profilePage.newPostText = action.newText;
+            this._callSubscriber(this._state);
+        }
+    }
+	
+	
+	
+ MyPost.js
+
+Здесь мы вызываем функцию dispatch, которая принимет функию addPostActionCreator как аргумент.
+	let addPost = () => {
+		props.dispatch(addPostActionCreator());
+		props.dispatch(onPostChangeActionCreator(''));
+	};
+	
+
+Здесь мы вызываем функцию dispatch, которая принимет функию onPostChangeActionCreator(text) как аргумент. text - это свойство объекта action, необходимый для выполнения одного из частей функции dispatch.
+	let onPostChange = () => {
+		let text = newPostElement.current.value;
+		props.dispatch(onPostChangeActionCreator(text));
+	};
+	
+ 
+ Конечно можно было обойтись и без функций actionCreator. Можно было просто передавать dispatch просто свойство type:
+	props.dispatch({type: 'UPDATE-NEW-POST-TEXT'}); или props.dispatch({type: 'ADD-POST'});
+ В таком случае Мы передаем не свойство, а объект action. И не только передаем, но и еще создаем этот объект.
+ Это нарушает правило Single responsibility - один файл должен отвечать только за одно действие.
+ Именно поэтому мы отдаем обязанность по созданию объектов action в файл State.js. 
+
+
+
+
+
+
+	ActionType
+ Для того чтобы не возникало ошибки из за опечатки, можно вынести значения свойства type как переменные и обращаться к ним по имени переменной. Таким образом, если сделать опечатку в имени переменной, компилятор сообщит нам об этом.
+ 
+ 
+	const ADD_POST = 'ADD-POST';
+	const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+	
+	
+		Было:
+	let addPostActionCreator = () => ({type: 'ADD-POST'});
+	let onPostChangeActionCreator = (text) => ({type: 'UPDATE-NEW-POST-TEXT', newText: text});
+	
+		Стало:
+	let addPostActionCreator = () => ({type: ADD_POST});
+	let onPostChangeActionCreator = (text) => ({type: UPDATE_NEW_POST_TEXT, newText: text});
+	
+	
+		Было:
+	dispatch(action) {
+        if  (action.type === 'ADD-POST') {
+            let newPost = {
+                id: '5',
+                message: this._state.profilePage.newPostText,
+                like: '4'
+            };
+            this._state.profilePage.postData.push(newPost);
+            this._callSubscriber(this._state);
+            
+        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+            this._state.profilePage.newPostText = action.newText;
+            this._callSubscriber(this._state);
+        }
+    }
+	
+		Стало:
+	dispatch(action) {
+        if  (action.type === ADD_POST) {
+            let newPost = {
+                id: '5',
+                message: this._state.profilePage.newPostText,
+                like: '4'
+            };
+            this._state.profilePage.postData.push(newPost);
+            this._callSubscriber(this._state);
+            
+        } else if (action.type === UPDATE_NEW_POST_TEXT) {
+            this._state.profilePage.newPostText = action.newText;
+            this._callSubscriber(this._state);
+        }
+    }
